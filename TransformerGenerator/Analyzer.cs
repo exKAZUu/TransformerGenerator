@@ -30,31 +30,88 @@ namespace TransformerGenerator {
 
 	public class RelativeElementInfo {
 		public RelativeElementInfo(XElement target) {
-			Target = target;
+			Element = target;
 		}
 
-		public XElement Target { get; set; }
+		public XElement Element { get; set; }
 
-		public XElement Previous {
-			get { return Target.PreviousElement(); }
+		public XElement Prev {
+			get { return Element.PreviousElement(); }
 		}
 
 		public XElement Next {
-			get { return Target.NextElement(); }
+			get { return Element.NextElement(); }
 		}
 
 		public XElement Parent {
-			get { return Target.Parent; }
+			get { return Element.Parent; }
 		}
 
 		public IEnumerable<XElement> GetAllElements() {
 			yield return Parent;
-			yield return Previous;
+			yield return Prev;
 			yield return Next;
 		}
 	}
 
 	public static class Analyzer {
+		public static IEnumerable<XElement> GetSiblingElements(XElement target, int previousCount, int nextCount) {
+			var prevs = target.PreviousElements().Take(previousCount).Reverse();
+			var nexts = target.NextElements().Take(nextCount);
+			return prevs.Concat(new[] { target }).Concat(nexts);
+		}
+
+		public static bool IsSameElementNameSequence(List<XElement> elemSeq1, List<XElement> elemSeq2) {
+			var count = elemSeq1.Count;
+			if (count != elemSeq2.Count) {
+				return false;
+			}
+			for (int i = 0; i < count; i++) {
+				if (elemSeq1[i].Name() != elemSeq2[i].Name()) {
+					return false;
+				}
+			}
+			return true;
+		}
+
+		public static bool HasSameElementNameSequence(XElement target, List<XElement> exElemSeq) {
+			for (int i = 0; i < exElemSeq.Count; i++) {
+				var elems2 = GetSiblingElements(target, i, exElemSeq.Count - i - 1);
+				if (IsSameElementNameSequence(exElemSeq, elems2.ToList())) {
+					return true;
+				}
+			}
+			return false;
+		}
+
+		private static string RemoveAllWhiteSpaces(string text) {
+			return new string(text.Where(c => !char.IsWhiteSpace(c)).ToArray());
+		}
+
+		public static List<List<XElement>> FindElementsBySelectedLines(XElement root, int startLine, int endLine) {
+			var result = new Stack<List<XElement>>();
+			foreach (var elem in root.DescendantsAndSelf()) {
+				if (AnalyzeLineNumberOrDefault(elem) == startLine) {
+					var candidate = GetSequenceElements(elem, endLine);
+					if (candidate != null) {
+						result.Push(candidate);
+					}
+				}
+			}
+			return result.ToList();
+		}
+
+		private static List<XElement> GetSequenceElements(XElement elem, int endLine) {
+			var result = new List<XElement> { elem };
+			foreach (var elem2 in elem.NextElements()) {
+				if (AnalyzeLineNumberOrDefault(elem2) > endLine) {
+					break;
+				}
+				result.Add(elem2);
+			}
+			return result;
+		}
+
 		public static List<DiffierentLine> FindDifferentLines(string original, string modified) {
 			var originalLines = original.Split('\n');
 			var modifiedLines = modified.Split('\n');
@@ -74,14 +131,14 @@ namespace TransformerGenerator {
 			return diffLines;
 		}
 
-		public static int AnalyzeLineNumber(XElement elem) {
+		public static int AnalyzeLineNumberOrDefault(XElement elem) {
 			foreach (var e in elem.DescendantsAndSelf()) {
 				var attr = e.Attribute("startline");
 				if (attr != null) {
 					return int.Parse(attr.Value);
 				}
 			}
-			throw new Exception();
+			return 0;
 		}
 
 		public static List<XElement> FindDifferentElements(
@@ -89,8 +146,7 @@ namespace TransformerGenerator {
 			var iLines = 0;
 			var ret = new List<XElement>();
 			foreach (var elem in modified.DescendantsAndSelf()) {
-				if (elem.Value == diffLines[iLines].Line
-						&& AnalyzeLineNumber(elem) == diffLines[iLines].LineNumber) {
+				if (AnalyzeLineNumberOrDefault(elem) == diffLines[iLines].LineNumber) {
 					ret.Add(elem);
 					iLines++;
 					if (iLines == diffLines.Count) {
@@ -99,11 +155,6 @@ namespace TransformerGenerator {
 				}
 			}
 			return ret;
-		}
-
-		public static XElement GetElementByLineNumber(XElement root, int lineNumber) {
-			return root.DescendantsAndSelf()
-					.First(element => AnalyzeLineNumber(element) == lineNumber);
 		}
 	}
 }

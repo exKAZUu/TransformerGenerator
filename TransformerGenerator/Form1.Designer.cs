@@ -58,9 +58,18 @@
 			this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.lvSuggestion = new System.Windows.Forms.ListView();
+			this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.lvAccepted = new System.Windows.Forms.ListView();
+			this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.button2 = new System.Windows.Forms.Button();
+			this.button3 = new System.Windows.Forms.Button();
 			this.tabOriginal.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.tabPage2.SuspendLayout();
@@ -73,16 +82,15 @@
 			this.tabPage5.SuspendLayout();
 			this.tabPage6.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(16, 620);
+			this.button1.Location = new System.Drawing.Point(12, 568);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(408, 31);
+			this.button1.Size = new System.Drawing.Size(404, 31);
 			this.button1.TabIndex = 0;
-			this.button1.Text = "button1";
+			this.button1.Text = "Analyze Inserted Example";
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
@@ -93,7 +101,7 @@
 			this.txtOriginalCode.Multiline = true;
 			this.txtOriginalCode.Name = "txtOriginalCode";
 			this.txtOriginalCode.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.txtOriginalCode.Size = new System.Drawing.Size(394, 429);
+			this.txtOriginalCode.Size = new System.Drawing.Size(394, 391);
 			this.txtOriginalCode.TabIndex = 1;
 			this.txtOriginalCode.WordWrap = false;
 			// 
@@ -104,7 +112,7 @@
 			this.txtExampleCode.Multiline = true;
 			this.txtExampleCode.Name = "txtExampleCode";
 			this.txtExampleCode.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.txtExampleCode.Size = new System.Drawing.Size(390, 429);
+			this.txtExampleCode.Size = new System.Drawing.Size(390, 391);
 			this.txtExampleCode.TabIndex = 2;
 			this.txtExampleCode.WordWrap = false;
 			// 
@@ -115,7 +123,7 @@
 			this.txtOriginalXml.Multiline = true;
 			this.txtOriginalXml.Name = "txtOriginalXml";
 			this.txtOriginalXml.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.txtOriginalXml.Size = new System.Drawing.Size(394, 429);
+			this.txtOriginalXml.Size = new System.Drawing.Size(394, 214);
 			this.txtOriginalXml.TabIndex = 3;
 			this.txtOriginalXml.WordWrap = false;
 			// 
@@ -126,7 +134,7 @@
 			this.txtExampleXml.Multiline = true;
 			this.txtExampleXml.Name = "txtExampleXml";
 			this.txtExampleXml.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.txtExampleXml.Size = new System.Drawing.Size(390, 429);
+			this.txtExampleXml.Size = new System.Drawing.Size(390, 214);
 			this.txtExampleXml.TabIndex = 4;
 			this.txtExampleXml.WordWrap = false;
 			// 
@@ -138,7 +146,7 @@
 			this.tabOriginal.Location = new System.Drawing.Point(12, 31);
 			this.tabOriginal.Name = "tabOriginal";
 			this.tabOriginal.SelectedIndex = 0;
-			this.tabOriginal.Size = new System.Drawing.Size(408, 461);
+			this.tabOriginal.Size = new System.Drawing.Size(408, 423);
 			this.tabOriginal.TabIndex = 6;
 			this.tabOriginal.SelectedIndexChanged += new System.EventHandler(this.tabOriginal_SelectedIndexChanged);
 			// 
@@ -148,7 +156,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(400, 435);
+			this.tabPage1.Size = new System.Drawing.Size(400, 397);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Code";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -159,7 +167,7 @@
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(400, 435);
+			this.tabPage2.Size = new System.Drawing.Size(400, 220);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Xml";
 			this.tabPage2.UseVisualStyleBackColor = true;
@@ -170,7 +178,7 @@
 			this.tabPage7.Location = new System.Drawing.Point(4, 22);
 			this.tabPage7.Name = "tabPage7";
 			this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage7.Size = new System.Drawing.Size(400, 435);
+			this.tabPage7.Size = new System.Drawing.Size(400, 220);
 			this.tabPage7.TabIndex = 2;
 			this.tabPage7.Text = "TreeView";
 			this.tabPage7.UseVisualStyleBackColor = true;
@@ -180,7 +188,7 @@
 			this.tvOriginal.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tvOriginal.Location = new System.Drawing.Point(3, 3);
 			this.tvOriginal.Name = "tvOriginal";
-			this.tvOriginal.Size = new System.Drawing.Size(394, 429);
+			this.tvOriginal.Size = new System.Drawing.Size(394, 214);
 			this.tvOriginal.TabIndex = 10;
 			this.tvOriginal.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvOriginal_AfterSelect);
 			// 
@@ -192,7 +200,7 @@
 			this.tabExample.Location = new System.Drawing.Point(433, 31);
 			this.tabExample.Name = "tabExample";
 			this.tabExample.SelectedIndex = 0;
-			this.tabExample.Size = new System.Drawing.Size(404, 461);
+			this.tabExample.Size = new System.Drawing.Size(404, 423);
 			this.tabExample.TabIndex = 7;
 			this.tabExample.SelectedIndexChanged += new System.EventHandler(this.tabExample_SelectedIndexChanged);
 			// 
@@ -202,7 +210,7 @@
 			this.tabPage3.Location = new System.Drawing.Point(4, 22);
 			this.tabPage3.Name = "tabPage3";
 			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage3.Size = new System.Drawing.Size(396, 435);
+			this.tabPage3.Size = new System.Drawing.Size(396, 397);
 			this.tabPage3.TabIndex = 0;
 			this.tabPage3.Text = "Code";
 			this.tabPage3.UseVisualStyleBackColor = true;
@@ -213,7 +221,7 @@
 			this.tabPage4.Location = new System.Drawing.Point(4, 22);
 			this.tabPage4.Name = "tabPage4";
 			this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage4.Size = new System.Drawing.Size(396, 435);
+			this.tabPage4.Size = new System.Drawing.Size(396, 220);
 			this.tabPage4.TabIndex = 1;
 			this.tabPage4.Text = "Xml";
 			this.tabPage4.UseVisualStyleBackColor = true;
@@ -224,7 +232,7 @@
 			this.tabPage8.Location = new System.Drawing.Point(4, 22);
 			this.tabPage8.Name = "tabPage8";
 			this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage8.Size = new System.Drawing.Size(396, 435);
+			this.tabPage8.Size = new System.Drawing.Size(396, 220);
 			this.tabPage8.TabIndex = 2;
 			this.tabPage8.Text = "TreeView";
 			this.tabPage8.UseVisualStyleBackColor = true;
@@ -234,7 +242,7 @@
 			this.tvExample.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tvExample.Location = new System.Drawing.Point(3, 3);
 			this.tvExample.Name = "tvExample";
-			this.tvExample.Size = new System.Drawing.Size(390, 429);
+			this.tvExample.Size = new System.Drawing.Size(390, 214);
 			this.tvExample.TabIndex = 11;
 			this.tvExample.MouseMove += new System.Windows.Forms.MouseEventHandler(this.tvExample_MouseMove);
 			// 
@@ -245,7 +253,7 @@
 			this.tabResult.Location = new System.Drawing.Point(843, 31);
 			this.tabResult.Name = "tabResult";
 			this.tabResult.SelectedIndex = 0;
-			this.tabResult.Size = new System.Drawing.Size(404, 461);
+			this.tabResult.Size = new System.Drawing.Size(404, 423);
 			this.tabResult.TabIndex = 8;
 			this.tabResult.SelectedIndexChanged += new System.EventHandler(this.tabResult_SelectedIndexChanged);
 			// 
@@ -255,7 +263,7 @@
 			this.tabPage5.Location = new System.Drawing.Point(4, 22);
 			this.tabPage5.Name = "tabPage5";
 			this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage5.Size = new System.Drawing.Size(396, 435);
+			this.tabPage5.Size = new System.Drawing.Size(396, 397);
 			this.tabPage5.TabIndex = 0;
 			this.tabPage5.Text = "Code";
 			this.tabPage5.UseVisualStyleBackColor = true;
@@ -267,7 +275,7 @@
 			this.txtResultCode.Multiline = true;
 			this.txtResultCode.Name = "txtResultCode";
 			this.txtResultCode.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.txtResultCode.Size = new System.Drawing.Size(390, 429);
+			this.txtResultCode.Size = new System.Drawing.Size(390, 391);
 			this.txtResultCode.TabIndex = 2;
 			this.txtResultCode.WordWrap = false;
 			// 
@@ -277,7 +285,7 @@
 			this.tabPage6.Location = new System.Drawing.Point(4, 22);
 			this.tabPage6.Name = "tabPage6";
 			this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage6.Size = new System.Drawing.Size(396, 435);
+			this.tabPage6.Size = new System.Drawing.Size(396, 220);
 			this.tabPage6.TabIndex = 1;
 			this.tabPage6.Text = "Xml";
 			this.tabPage6.UseVisualStyleBackColor = true;
@@ -289,7 +297,7 @@
 			this.txtResultXml.Multiline = true;
 			this.txtResultXml.Name = "txtResultXml";
 			this.txtResultXml.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.txtResultXml.Size = new System.Drawing.Size(390, 429);
+			this.txtResultXml.Size = new System.Drawing.Size(390, 214);
 			this.txtResultXml.TabIndex = 4;
 			this.txtResultXml.WordWrap = false;
 			// 
@@ -317,10 +325,10 @@
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5});
-			this.lvResult.Location = new System.Drawing.Point(19, 512);
+			this.lvResult.Location = new System.Drawing.Point(12, 460);
 			this.lvResult.MultiSelect = false;
 			this.lvResult.Name = "lvResult";
-			this.lvResult.Size = new System.Drawing.Size(382, 102);
+			this.lvResult.Size = new System.Drawing.Size(404, 102);
 			this.lvResult.TabIndex = 10;
 			this.lvResult.UseCompatibleStateImageBehavior = false;
 			this.lvResult.View = System.Windows.Forms.View.Details;
@@ -333,47 +341,120 @@
 			// columnHeader1
 			// 
 			this.columnHeader1.Text = "Element";
+			this.columnHeader1.Width = 69;
 			// 
 			// columnHeader3
 			// 
 			this.columnHeader3.Text = "Parent";
+			this.columnHeader3.Width = 76;
 			// 
 			// columnHeader4
 			// 
 			this.columnHeader4.Text = "Previous";
+			this.columnHeader4.Width = 68;
 			// 
 			// columnHeader5
 			// 
 			this.columnHeader5.Text = "Next";
+			this.columnHeader5.Width = 75;
 			// 
-			// dataGridView1
+			// lvSuggestion
 			// 
-			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2});
-			this.dataGridView1.Location = new System.Drawing.Point(572, 512);
-			this.dataGridView1.Name = "dataGridView1";
-			this.dataGridView1.RowTemplate.Height = 21;
-			this.dataGridView1.Size = new System.Drawing.Size(240, 150);
-			this.dataGridView1.TabIndex = 11;
+			this.lvSuggestion.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader9});
+			this.lvSuggestion.Location = new System.Drawing.Point(433, 460);
+			this.lvSuggestion.MultiSelect = false;
+			this.lvSuggestion.Name = "lvSuggestion";
+			this.lvSuggestion.Size = new System.Drawing.Size(404, 102);
+			this.lvSuggestion.TabIndex = 11;
+			this.lvSuggestion.UseCompatibleStateImageBehavior = false;
+			this.lvSuggestion.View = System.Windows.Forms.View.Details;
+			this.lvSuggestion.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvSuggestion_MouseDoubleClick);
 			// 
-			// Column1
+			// columnHeader6
 			// 
-			this.Column1.HeaderText = "Column1";
-			this.Column1.Name = "Column1";
+			this.columnHeader6.Text = "Direction";
 			// 
-			// Column2
+			// columnHeader7
 			// 
-			this.Column2.HeaderText = "Column2";
-			this.Column2.Name = "Column2";
+			this.columnHeader7.Text = "Element";
+			// 
+			// columnHeader8
+			// 
+			this.columnHeader8.Text = "#Insertions";
+			this.columnHeader8.Width = 79;
+			// 
+			// columnHeader9
+			// 
+			this.columnHeader9.Text = "#Examples";
+			this.columnHeader9.Width = 87;
+			// 
+			// lvAccepted
+			// 
+			this.lvAccepted.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader10,
+            this.columnHeader11,
+            this.columnHeader12,
+            this.columnHeader13});
+			this.lvAccepted.Location = new System.Drawing.Point(843, 460);
+			this.lvAccepted.MultiSelect = false;
+			this.lvAccepted.Name = "lvAccepted";
+			this.lvAccepted.Size = new System.Drawing.Size(397, 102);
+			this.lvAccepted.TabIndex = 12;
+			this.lvAccepted.UseCompatibleStateImageBehavior = false;
+			this.lvAccepted.View = System.Windows.Forms.View.Details;
+			this.lvAccepted.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvAccepted_MouseDoubleClick);
+			// 
+			// columnHeader10
+			// 
+			this.columnHeader10.Text = "Direction";
+			// 
+			// columnHeader11
+			// 
+			this.columnHeader11.Text = "Element";
+			// 
+			// columnHeader12
+			// 
+			this.columnHeader12.Text = "#Insertions";
+			this.columnHeader12.Width = 79;
+			// 
+			// columnHeader13
+			// 
+			this.columnHeader13.Text = "#Examples";
+			this.columnHeader13.Width = 87;
+			// 
+			// button2
+			// 
+			this.button2.Location = new System.Drawing.Point(843, 568);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(404, 31);
+			this.button2.TabIndex = 13;
+			this.button2.Text = "Apply Insertion";
+			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.button2_Click);
+			// 
+			// button3
+			// 
+			this.button3.Location = new System.Drawing.Point(433, 568);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(404, 31);
+			this.button3.TabIndex = 17;
+			this.button3.Text = "Analyze Deleted Example";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.button3_Click);
 			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1275, 661);
-			this.Controls.Add(this.dataGridView1);
+			this.ClientSize = new System.Drawing.Size(1275, 603);
+			this.Controls.Add(this.button3);
+			this.Controls.Add(this.button2);
+			this.Controls.Add(this.lvAccepted);
+			this.Controls.Add(this.lvSuggestion);
 			this.Controls.Add(this.lvResult);
 			this.Controls.Add(this.tabResult);
 			this.Controls.Add(this.tabExample);
@@ -403,7 +484,6 @@
 			this.tabPage6.PerformLayout();
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -440,9 +520,18 @@
 		private System.Windows.Forms.TabPage tabPage8;
 		private System.Windows.Forms.TreeView tvExample;
 		private System.Windows.Forms.ToolTip toolTip1;
-		private System.Windows.Forms.DataGridView dataGridView1;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+		private System.Windows.Forms.ListView lvSuggestion;
+		private System.Windows.Forms.ColumnHeader columnHeader6;
+		private System.Windows.Forms.ColumnHeader columnHeader7;
+		private System.Windows.Forms.ColumnHeader columnHeader8;
+		private System.Windows.Forms.ColumnHeader columnHeader9;
+		private System.Windows.Forms.ListView lvAccepted;
+		private System.Windows.Forms.ColumnHeader columnHeader10;
+		private System.Windows.Forms.ColumnHeader columnHeader11;
+		private System.Windows.Forms.ColumnHeader columnHeader12;
+		private System.Windows.Forms.ColumnHeader columnHeader13;
+		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.Button button3;
     }
 }
 
