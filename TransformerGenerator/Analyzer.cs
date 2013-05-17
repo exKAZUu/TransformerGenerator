@@ -1,11 +1,25 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Linq;
 
 namespace TransformerGenerator {
     public class DiffierentLine {
         public string Line { get; set; }
         public int LineNumber { get; set; }
+    }
+
+    public class RelativeElementInfo {
+        public XElement PrevElement { get; set; }
+        public XElement NextElement { get; set; }
+        public XElement ParentElement { get; set; }
+
+        public IEnumerable<XElement> GetAllElements() {
+            yield return PrevElement;
+            yield return NextElement;
+            yield return ParentElement;
+        }
     }
 
     public static class Analyzer {
@@ -51,6 +65,24 @@ namespace TransformerGenerator {
                 }
             }
             return ret;
+        }
+
+        public static XElement GetXElementFromLineNumber(XElement root, int lineNumber) {
+            return root.DescendantsAndSelf()
+                .First(element => AnalyzeLineNumber(element) == lineNumber);
+        }
+
+        public static IEnumerable<RelativeElementInfo> GetRelativeXElementsLists(
+                XElement root, List<XElement> targetElements) {
+            return targetElements.Select(e => GetRelativeXElements(root, e));
+        }
+
+        public static RelativeElementInfo GetRelativeXElements(XElement root, XElement targetElement) {
+            return new RelativeElementInfo {
+                    PrevElement = (XElement)targetElement.PreviousNode,
+                    NextElement = (XElement)targetElement.NextNode,
+                    ParentElement = targetElement.Parent,
+            };
         }
     }
 }

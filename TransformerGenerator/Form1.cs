@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using Code2Xml.Languages.Java.CodeToXmls;
@@ -63,13 +64,22 @@ namespace TransformerGenerator {
             };
             using (var p = Process.Start(info)) p.WaitForExit();
 
-            var extractedElement = "nil";
-            var modified = new XElement("stmt");
             var difflines = Analyzer.Analyze(textBox1.Text, textBox2.Text);
-            var extractedElementList = Analyzer.Find(xml2, difflines);
-            extractedElement =
-                    extractedElementList.Select((x) => x.ToString()).Aggregate((x, y) => x + y);
-            textBox5.Text = extractedElement;
+            var extractedXElementList = Analyzer.Find(xml2, difflines);
+            // var extractedXElement =
+            //        extractedXElementList.Select(x => x.ToString()).Aggregate((x, y) => x + y);
+            var relativeXElementsLists = Analyzer.GetRelativeXElementsLists(xml2,
+                    extractedXElementList).ToList();
+            var resultText = new StringBuilder();
+            for (int i = 0; i < relativeXElementsLists.Count; i++) {
+                resultText.Append((i + 1) + ". ");
+                resultText.Append("["
+                        + relativeXElementsLists[i].GetAllElements()
+                                .Select(element => element.Name.ToString())
+                                .Aggregate((x, y) => x + ", " + y) + "]");
+                resultText.AppendLine();
+            }
+            textBox5.Text = resultText.ToString();
         }
     }
 }
