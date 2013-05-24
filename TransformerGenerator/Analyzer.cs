@@ -36,11 +36,11 @@ namespace TransformerGenerator {
         public XElement Element { get; set; }
 
         public XElement Prev {
-            get { return Element.PreviousElement(); }
+            get { return Element.PreviousElementOrDefault(); }
         }
 
         public XElement Next {
-            get { return Element.NextElement(); }
+            get { return Element.NextElementOrDefault(); }
         }
 
         public XElement Parent {
@@ -48,6 +48,7 @@ namespace TransformerGenerator {
         }
 
         public IEnumerable<XElement> GetAllElements() {
+            yield return Element;
             yield return Parent;
             yield return Prev;
             yield return Next;
@@ -62,7 +63,7 @@ namespace TransformerGenerator {
             return prevs.Concat(new[] { target }).Concat(nexts);
         }
 
-        public static bool IsSameElementNameSequence(
+        public static bool IsSimilarElementSequence(
                 List<XElement> elemSeq1, List<XElement> elemSeq2) {
             var count = elemSeq1.Count;
             if (count != elemSeq2.Count) {
@@ -72,14 +73,18 @@ namespace TransformerGenerator {
                 if (elemSeq1[i].Name() != elemSeq2[i].Name()) {
                     return false;
                 }
+                if (elemSeq1[i].Name().All(char.IsUpper)
+                        && elemSeq1[i].Value != elemSeq2[i].Value) {
+                    return false;
+                }
             }
             return true;
         }
 
-        public static bool HasSameElementNameSequence(XElement target, List<XElement> exElemSeq) {
+        public static bool HasSimilarElementSequence(XElement target, List<XElement> exElemSeq) {
             for (int i = 0; i < exElemSeq.Count; i++) {
                 var elems2 = GetSiblingElements(target, i, exElemSeq.Count - i - 1);
-                if (IsSameElementNameSequence(exElemSeq, elems2.ToList())) {
+                if (IsSimilarElementSequence(exElemSeq, elems2.ToList())) {
                     return true;
                 }
             }
@@ -137,8 +142,14 @@ namespace TransformerGenerator {
             return diffLines;
         }
 
+        private static readonly List<string> IgnoredElements =
+                new List<string> { "INDENT", "DEDENT" };
+
         public static int AnalyzeFirstLineNumberOrDefault(XElement elem) {
             foreach (var e in elem.DescendantsAndSelf()) {
+                if (IgnoredElements.Contains(e.Name())) {
+                    continue;
+                }
                 var attr = e.Attribute("startline");
                 if (attr != null) {
                     return int.Parse(attr.Value);
@@ -150,6 +161,9 @@ namespace TransformerGenerator {
         public static int AnalyzeLastLineNumberOrDefault(XElement elem) {
             var lastLine = 0;
             foreach (var e in elem.DescendantsAndSelf()) {
+                if (IgnoredElements.Contains(e.Name())) {
+                    continue;
+                }
                 var attr = e.Attribute("startline");
                 if (attr != null) {
                     lastLine = int.Parse(attr.Value);
@@ -163,7 +177,8 @@ namespace TransformerGenerator {
             var iLines = 0;
             var ret = new List<XElement>();
             foreach (var elem in modified.DescendantsAndSelf()) {
-                if (AnalyzeFirstLineNumberOrDefault(elem) == diffLines[iLines].LineNumber) {
+                if (AnalyzeFirstLineNumberOrDefault(elem) == diffLines[iLines].LineNumber &&
+                        AnalyzeLastLineNumberOrDefault(elem) == diffLines[iLines].LineNumber) {
                     ret.Add(elem);
                     iLines++;
                     if (iLines == diffLines.Count) {

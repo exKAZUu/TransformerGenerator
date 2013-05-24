@@ -148,7 +148,6 @@
 			this.tabOriginal.SelectedIndex = 0;
 			this.tabOriginal.Size = new System.Drawing.Size(408, 423);
 			this.tabOriginal.TabIndex = 6;
-			this.tabOriginal.SelectedIndexChanged += new System.EventHandler(this.tabOriginal_SelectedIndexChanged);
 			// 
 			// tabPage1
 			// 
@@ -202,7 +201,6 @@
 			this.tabExample.SelectedIndex = 0;
 			this.tabExample.Size = new System.Drawing.Size(404, 423);
 			this.tabExample.TabIndex = 7;
-			this.tabExample.SelectedIndexChanged += new System.EventHandler(this.tabExample_SelectedIndexChanged);
 			// 
 			// tabPage3
 			// 
@@ -255,7 +253,6 @@
 			this.tabResult.SelectedIndex = 0;
 			this.tabResult.Size = new System.Drawing.Size(404, 423);
 			this.tabResult.TabIndex = 8;
-			this.tabResult.SelectedIndexChanged += new System.EventHandler(this.tabResult_SelectedIndexChanged);
 			// 
 			// tabPage5
 			// 

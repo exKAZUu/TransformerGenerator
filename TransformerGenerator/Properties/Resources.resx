@@ -114,4 +114,44 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="originalCode" xml:space="preserve">
+    <value>class Sample {
+  void main() {
+    int a = 0;
+    if (a == 0) {
+      System.out.println(0);
+    } else {
+      System.out.println(1);
+    }
+    try {
+      throw new Exception();
+      a++;
+    }
+    finally {
+      a--;
+    }
+  }
+}</value>
+  </data>
+  <data name="exampleCode" xml:space="preserve">
+    <value>class Sample {
+  void main() {
+    stmt();
+    int a = 0;
+    stmt();
+    if (a == 0) {
+      System.out.println(0);
+    } else {
+      System.out.println(1);
+    }
+    try {
+      throw new Exception();
+      a++;
+    }
+    finally {
+      a--;
+    }
+  }
+}</value>
+  </data>
 </root>
