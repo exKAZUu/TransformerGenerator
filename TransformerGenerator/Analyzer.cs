@@ -188,5 +188,17 @@ namespace TransformerGenerator {
             }
             return ret;
         }
+
+        public static List<XElement> FindElementsFromPositionRange(
+                XElement modified, int fromLine, int toLine, int fromPos, int toPos) {
+            var iLines = 0;
+            var ret = new List<XElement>();
+            foreach (var elem in modified.DescendantsAndSelf()) {
+                if (true) {
+                    ret.Add(elem);
+                }
+            }
+            return ret;
+        }
     }
 }
